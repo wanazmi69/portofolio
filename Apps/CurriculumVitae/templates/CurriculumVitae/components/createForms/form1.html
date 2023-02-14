@@ -1,0 +1,95 @@
+<div class="">
+    <div class="flex items-center space-x-2 text-xs pb-2 ">
+        <div class=" flex items-center space-x-2 relative w-full">
+            <div class="group flex items-center">
+                <dfn class="absolute -top-5 w-full hidden group-hover:flex border p-2 rounded-lg bg-white shadow-sm">
+                    Masukan nama lengkap dengan menggunakan Romaji/Alfabet sesuai yang tertulis di Zairyu-Card
+                </dfn>
+                <span class=" material-symbols-outlined text-sky-400">
+                    help
+                </span>
+
+            </div>
+            <span>
+                Nama Lengkap :
+            </span>
+        </div>
+    </div>
+    <input type="text" name="{{user.full_name.name}}" value="{{user.full_name.value}}"
+    placeholder="WAN AZMI"
+    required
+    class="text-sm placeholder-gray-500 pl-6 pr-4 rounded-md border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
+    >
+</div>
+<div>
+    <div class="flex items-center space-x-2 text-xs pb-2 ">
+        <div class=" flex items-center space-x-2 relative w-full">
+            <div class="group flex items-center">
+                <dfn class="absolute -top-5 w-full hidden group-hover:flex border p-2 rounded-lg bg-white shadow-sm">
+                    Masukan nama lengkap dengan menggunakan katakana
+                </dfn>
+                <span class="material-symbols-outlined text-sky-400">
+                    help
+                </span>
+            </div>
+            <span>
+            Furigana :
+            </span>
+        </div>
+    </div>
+    <input type="text" name="{{user.furigana.name}}" value="{{user.furigana.value}}"
+    placeholder="ワン　アズミ"
+    required
+    class="text-sm placeholder-gray-500 pl-6 pr-4 rounded-md border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
+    >
+</div>
+<div>
+    <div class="flex items-center space-x-2 text-xs pb-2 ">
+        <div class=" flex items-center space-x-2 relative w-full">
+            <div class="group flex items-center">
+                <dfn class="absolute -top-5 w-full hidden group-hover:flex border p-2 rounded-lg bg-white shadow-sm">
+                    Masukan email yang dapat dihubungi
+                </dfn>
+                <span class="material-symbols-outlined text-sky-400">
+                    help
+                </span>
+            </div>
+            <span>
+                Email :
+            </span>
+        </div>
+    </div>
+    <input type="text" name="{{user.email.name}}" value="{{user.email.value}}"
+    placeholder="wanamzi@mail.com"
+    required
+    class="text-sm placeholder-gray-500 pl-6 pr-4 rounded-md border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
+    >
+</div>
+<div>
+    <div class="flex items-center space-x-2 text-xs pb-2 ">
+        <div class=" flex items-center space-x-2 relative w-full">
+                       
+            <div class="group flex items-center">
+                <dfn class="absolute -top-5 w-full hidden group-hover:flex border p-2 rounded-lg bg-white shadow-sm">
+                    Masukan Nomor Jepang yang dapat dihubungi. Jika tidak memiliki Nomor Jepang 'kosongkang'
+                </dfn>
+                <span class="material-symbols-outlined text-sky-400">
+                    help
+                </span>
+            </div>
+            <span>
+            Nomor HP :
+            </span>
+        </div>
+    </div>
+    <div class="flex text-sm items-center space-x-2">
+        <span class="bg-sky-400 p-2 rounded-md text-white">
+            +81
+        </span>
+
+        <input type="text" name="{{user.phone_number.name}}" value="{{user.phone_number.value}}"
+        placeholder="802xxxxxxx"
+        class="text-sm placeholder-gray-500 pl-6 pr-4 rounded-md border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
+        >
+    </div>
+</div>

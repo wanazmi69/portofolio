@@ -1,0 +1,21 @@
+version: "3"
+servicas:
+  db:
+    container_name: postgresql_db
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: CurriculumVitae
+  ports:
+    -"8080:8080"
+  pgadmin:
+    container_name: pgadmin4
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMIAL : root@root.com
+      PGADMIN_DEFAULT_PASSWORD : root
+    ports:
+      -"5050:80"

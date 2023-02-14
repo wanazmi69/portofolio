@@ -1,0 +1,256 @@
+Untuk menggabungkan satu form dengan beberapa model yang terhubung dengan foreign keys di Django, Anda dapat menggunakan formset. Formsets memungkinkan Anda untuk memproses beberapa objek sekaligus dalam satu form.
+
+Berikut adalah contoh penggabungan form untuk dua model, User dan Profile, yang terhubung dengan foreign keys:
+
+kotlin
+Copy code
+from django import forms
+from django.forms import inlineformset_factory
+from .models import User, Profile
+
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password']
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['address', 'phone_number']
+
+ProfileFormSet = inlineformset_factory(User, Profile, form=ProfileForm, extra=1)
+
+
+
+from django import forms
+from .models import User, Profile
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['first_name', 'last_name', 'address']
+
+user = User.objects.get(id=1)
+profile = user.profile
+form = ProfileForm(instance=profile)
+
+
+# views.py
+from django import forms
+from django.shortcuts import render
+from .models import User, Profile, Address
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['first_name', 'last_name']
+
+class AddressForm(forms.ModelForm):
+    class Meta:
+        model = Address
+        fields = ['address', 'city', 'state', 'zip_code']
+
+class UserForm(forms.Form):
+    profile = forms.ModelChoiceField(queryset=Profile.objects.all(), widget=forms.HiddenInput)
+    first_name = forms.CharField(max_length=100)
+    last_name = forms.CharField(max_length=100)
+    address = forms.CharField(max_length=200)
+    city = forms.CharField(max_length=100)
+    state = forms.CharField(max_length=100)
+    zip_code = forms.CharField(max_length=5)
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)
+        super(UserForm, self).__init__(*args, **kwargs)
+        if user is not None:
+            self.fields['first_name'].initial = user.profile.first_name
+            self.fields['last_name'].initial = user.profile.last_name
+            self.fields['address'].initial = user.address.address
+            self.fields['city'].initial = user.address.city
+            self.fields['state'].initial = user.address.state
+            self.fields['zip_code'].initial = user.address.zip_code
+
+def update_user_data(request, user_id):
+    user = User.objects.get(id=user_id)
+    form = UserForm(user=user)
+
+    if request.method == 'POST':
+        form = UserForm(request.POST, user=user)
+        if form.is_valid():
+            user.profile.first_name = form.cleaned_data['first_name']
+            user.profile.last_name = form.cleaned_data['last_name']
+            user.profile.save()
+
+            user.address.address = form.cleaned_data['address']
+            user.address.city = form.cleaned_data['city']
+            user.address.state = form.cleaned_data['state']
+            user.address.zip_code = form.cleaned_data['zip_code']
+            user.address.save()
+
+    return render(request, 'update_user_data.html', {'form': form})
+
+# update_
+
+
+
+# forms.py
+from django import forms
+from django.forms import inlineformset_factory
+from .models import User, Profile, Address
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['first_name', 'last_name']
+
+class AddressForm(forms.ModelForm):
+    class Meta:
+        model = Address
+        fields = ['address', 'city', 'state', 'zip_code']
+
+ProfileFormSet = inlineformset_factory(User, Profile, form=ProfileForm, can_delete=False, extra=0)
+AddressFormSet = inlineformset_factory(User, Address, form=AddressForm, can_delete=False, extra=0)
+
+# views.py
+from django.shortcuts import render, redirect
+from .forms import ProfileFormSet, AddressFormSet
+
+def update_user_data(request, user_id):
+    user = User.objects.get(id=user_id)
+    profile_formset = ProfileFormSet(instance=user)
+    address_formset = AddressFormSet(instance=user)
+
+    if request.method == 'POST':
+        profile_formset = ProfileFormSet(request.POST, instance=user)
+        address_formset = AddressFormSet(request.POST, instance=user)
+
+        if profile_formset.is_valid() and address_formset.is_valid():
+            profile_formset.save()
+            address_formset.save()
+            return redirect('user_data')
+
+    return render(request, 'update_user_data.html', {'profile_formset': profile_formset, 'address_formset': address_formset})
+
+# update_user_data.html
+<form method="post">
+  {% csrf_token %}
+  {{ profile_formset.as_table }}
+  {{ address_formset.as_table }}
+  <input type="submit" value="Update">
+</form>
+
+
+//// deabak
+
+# forms.py
+from django import forms
+from django.forms import inlineformset_factory
+from .models import User, Profile, Address
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['first_name', 'last_name']
+        exclude = ['user']
+
+class AddressForm(forms.ModelForm):
+    class Meta:
+        model = Address
+        fields = ['address', 'city', 'state', 'zip_code']
+        exclude = ['user']
+
+ProfileFormSet = inlineformset_factory(User, Profile, form=ProfileForm, can_delete=False, extra=1)
+AddressFormSet = inlineformset_factory(User, Address, form=AddressForm, can_delete=False, extra=1)
+
+# views.py
+from django.shortcuts import render, redirect
+from .forms import ProfileFormSet, AddressFormSet
+
+def add_user_data(request, user_id):
+    user = User.objects.get(id=user_id)
+    profile_formset = ProfileFormSet(instance=user, prefix='profile')
+    address_formset = AddressFormSet(instance=user, prefix='address')
+
+    if request.method == 'POST':
+        profile_formset = ProfileFormSet(request.POST, instance=user, prefix='profile')
+        address_formset = AddressFormSet(request.POST, instance=user, prefix='address')
+
+        if profile_formset.is_valid() and address_formset.is_valid():
+            for profile_form in profile_formset:
+                profile = profile_form.save(commit=False)
+                profile.user = user
+                profile.save()
+
+            for address_form in address_formset:
+                address = address_form.save(commit=False)
+                address.user = user
+                address.save()
+
+            return redirect('user_data')
+
+    return render(request, 'add_user_data.html', {'profile_formset': profile_formset, 'address_formset': address_formset})
+
+# add_user_data.html
+<form method="post">
+  {% csrf_token %}
+  {{ profile_formset.as_table }}
+  {{ address_formset.as_table }}
+  <input type="submit" value="Add">
+</form>
+
+
+# models.py
+from django.contrib.auth.models import User
+from django.db import models
+
+class Model1(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    field1 = models.CharField(max_length=100)
+
+class Model2(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    field2 = models.CharField(max_length=100)
+
+# forms.py
+from django import forms
+from django.forms import inlineformset_factory
+from .models import Model1, Model2
+
+class Model1Form(forms.ModelForm):
+    class Meta:
+        model = Model1
+        fields = '__all__'
+
+class Model2Form(forms.ModelForm):
+    class Meta:
+        model = Model2
+        fields = '__all__'
+
+Model1InlineFormSet = inlineformset_factory(User, Model1, form=Model1Form, extra=1)
+Model2InlineFormSet = inlineformset_factory(User, Model2, form=Model2Form, extra=1)
+
+# views.py
+from django.shortcuts import render, redirect
+from .forms import Model1InlineFormSet, Model2InlineFormSet
+
+def add_data(request):
+    model1_formset = Model1InlineFormSet(instance=request.user)
+    model2_formset = Model2InlineFormSet(instance=request.user)
+
+    if request.method == 'POST':
+        model1_formset = Model1InlineFormSet(request.POST, instance=request.user)
+        model2_formset = Model2InlineFormSet(request.POST, instance=request.user)
+        if model1_formset.is_valid() and model2_formset.is_valid():
+            model1_formset.save()
+            model2_formset.save()
+            return redirect('success_page')
+
+    context = {
+        'model1_formset': model1_formset,
+        'model2_formset': model2_formset,
+    }
+    return render(request, 'add_data.html', context)
+
+# add_data.html
+<form method="
+

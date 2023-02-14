@@ -1,0 +1,529 @@
+{% load static %}
+
+
+    
+{% for personal_user in Users %}
+
+<div id="mycv" class="flex  pt-20 px-5 md:px-10 justify-center h-max w-full bg-white pb-10 text-sm font-serif ">
+    <!-- <div>
+        <button id="download-button" onclick="generatePDF()">export to pdf</button>
+    </div> -->
+    <div>
+        <a href="{% url 'exportPDF' %} ">export to pdf</a>
+    </div>
+    <div class="items-center w-full  max-w-[21cm]  overflow-scroll shadow-lg">
+        <div class=" flex p-4 md:p-10 flex-col justify-center items-center w-[21cm] rounded-md bg-slate-100 pb-16 ">
+            
+            
+            {% for user in personal_user.personaldata_set.all %}
+
+
+            
+            
+            <div class="flex w-full  ">
+                <div class=" w-full ">
+                    <div>
+                        <div class="flex py-2 px-4 items-center justify-between ">
+                            <span class="text-xl">履　歴　書</span>
+                            <span class="text-sm">2021年　　4月　　29日現在</span>
+                        </div>
+                    </div>
+                    <div class="border border-x-black">
+
+                        <div class= "relative flex items-center justify-center py-2  text-sm bg-slate-100 border border-slate-100  border-t-black ">
+                            <div class=" absolute justify-center items-center left-2 ">
+                                フリガナ
+                            </div>
+                        
+                            <div class="">
+                                    <span>
+                                        {{user.furigana}}
+                                    </span>
+                                  
+                            </div>
+                        </div>
+                        <div class=" flex flex-col w-full border border-slate-100  border-b-black">
+                            <span class="p-2 w-full border-dashed  border-slate-100 border-t-black border">
+                                氏　　名
+                            </span>
+                            <span class="flex justify-center font-serif text-xl items-center w-full  pb-5 ">
+                                {{user.full_name}}
+                            </span>
+                        </div>
+                        <div class="flex relative items-center justify-between  py-2  border ">
+                            <span class="px-2">
+                                {{user.date_of_birth|date:'Y'}} 年　　{{user.date_of_birth|date:'n'}}	月　　{{user.date_of_birth|date:'j'}} 日生　　満（ {{user.age}}　　歳 )
+                            </span>
+                            <span class="absolute right-0 px-4  py-2 border-dashed border  border-l-black">
+                                {{user.gender}}
+                            </span>
+                        </div>
+    
+                        <div class="flex relative items-center justify-center p-3 border  border-t-black w-full overflow-hidden">
+    
+                            <span class="absolute left-2 ">
+                                フリガナ 
+                            </span>
+                            <span class="text-xs">
+                                {{user.current_address_furigana}}
+                            </span>
+                      
+                        </div>
+                        <!--  -->
+                        <div class=" p-2 w-full border border-dashed border-t-black ">
+                
+                            <div class="space-x-4">
+                                <span>
+                                    現住所
+                                </span>
+                                <span class="text-sm">
+                                    〒 {{user.postal_code}}
+                                </span>
+                            </div>
+                            <div class="text-sm">
+                                {{user.current_address}}
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="flex flex-col">
+                    <div class="pl-5">
+                        {% if user.photo %}
+                            <img class="flex w-[36mm] h-[40mm] object-cover" src="{{user.photo.url}} " alt="profile_photo">
+                        {% else %}
+                            <div class=" p-2 flex flex-col justify-center text-xs border-dashed border border-slate-500 text-slate-400 items-center w-28 h-[40mm] bg-white">
+                                <span>
+                                    upload your photo
+                                </span>
+                                <span class="flex flex-col pt-2">
+                                    <span>
+                                        36 x 40mm (3x4)
+                                    </span>
+                                    <span>
+                                        24 x 30mm (2x3)
+                                    </span>
+
+                                </span>
+
+                            </div>
+                        {% endif %}
+                        
+                    </div>
+
+                    <div class="flex justify-center items-center mt-[14px] py-[22px] px-4">
+
+                    </div>
+                    <div class="flex justify-center items-center py-[10px] px-4 border border-slate-100  border-t-black border-r-black">
+                        <span>
+                            国籍
+                        </span>
+                    </div>
+                    <div class="flex justify-center items-center py-4  px-4 pb-[21px] text-sm border boreder-top-dashed border-slate-100   border-r-black">
+                        <divspan class="">
+                            {{user.country}} 
+                        </divspan>
+                    </div>
+                   
+                </div>
+
+            </div>
+            <!--  -->
+            <div class=" w-full border border-black border-x-black overflow-hidden">
+                
+    
+              
+                
+                <!--  -->
+                <ul class=" justify-between grid grid-cols-2 grid-rows-2 items-center text-sm border">
+                    <li class="space-x-2 p-2">
+                        <span>
+                            電話番号 :
+                        </span>
+                        {% if user.phone_number %}
+                            <span>
+                                +81 {{user.phone_number}}
+                            </span>
+                        {% endif %}
+                    </li>
+                    <li class="space-x-2 py-2 px-5 border border-l-black">
+                        <span>
+                            メールアドレス： 
+                        </span>
+                        <span>
+                            {{user.email}}
+                        </span>
+                    </li>
+                 
+                    <li class="space-x-2 p-2 border border-t-black">
+                        <span>
+                            在留資格：
+                        <span>
+                            {{user.status_of_residence}}
+                        </span>
+                    </li>
+                    <li class="space-x-2 py-2 px-5 border border-l-black border-t-black">
+                        <span>
+                            在留期限：
+                        </span>
+                        <span>
+                            {{user.period_of_stay|date:'Y'}} 年  {{user.period_of_stay|date:'n'}} 月 {{user.period_of_stay|date:'j'}} 日
+                        </span>
+                    </li>
+                
+                </ul>
+           
+            </div>
+            {% endfor %}
+
+
+            <div class="mt-10 w-full ">
+                <!-- table latar belakang pendidikan -->
+                <table class=" table-auto content-center w-full ">
+                      
+                    <thead class="w-full font-normal ">
+                        <tr class="">
+                            <th class="p-2 font-normal border border-black">国</th>
+                            <th class="p-2 font-normal border border-black">年</th>
+                            <th class="p-2 font-normal border border-black">月</th>
+                            <th class="p-2 font-normal border border-black">学歴</th>
+                        </tr>
+                    </thead>
+                    <tbody class= "text-sm w-full ">
+                    {% for user in personal_user.bacgroundschool_set.all %}
+                          
+                        <!-- masuk -->
+                        <tr class="">
+                            <td class="p-2 text-center border   border-b-black border-x-black ">{{user.country}}</td>
+                            <td class="p-2 text-center border border-b-black border-x-black">{{user.admission_year}}</td>
+                            <td class="p-2 text-center border border-b-black border-x-black">
+                                {% if user.admission_month %}
+                                    {{user.admission_month}}
+                                {% endif %}
+                            </td>
+                            <td class="p-2 pl-5 text-start border  border-b-black border-x-black space-x-2">
+                                <span>
+                                    {{user.education}}
+                                </span>
+                                <span>
+                                    入学
+                                </span>
+                            </td>
+                        </tr>
+                        <!-- lulus -->
+                        <tr class="">
+                            <td class="p-2 border-b-black text-center border border-x-black ">{{user.country}}</td>
+                            <td class="p-2 border-b-black text-center border border-x-black">{{user.graduation_year}}</td>
+                            <td class="p-2 border-b-black text-center border border-x-black">
+                                {% if user.graduation_month %}
+                                    {{user.graduation_month}}
+                                {% endif %}    
+                                
+                            
+                            </td>
+                            <td class="p-2 border-b-black pl-5 text-start border border-x-black space-x-2">
+                                <span>
+                                    {{user.education}}
+                                </span>
+                                <span>
+                                    卒業
+                                </span>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        <td class="p-5 border-b-black text-center border border-x-black "></td>
+                        <td class="p-5 border-b-black text-center border border-x-black"></td>
+                        <td class="p-5 border-b-black text-center border border-x-black"></td>
+                        <td class="p-5 border-b-black pl-5 text-start border border-x-black space-x-2"></td>
+
+                    </tbody>
+
+                    
+                    <!--  riwayat pekerjaan -->
+                      
+                        <thead class="w-full font-normal ">
+                            <tr class="">
+                                <th class="p-2 font-normal border border-x-black border-b-black">国</th>
+                                <th class="p-2 font-normal border border-r-black border-b-black">年</th>
+                                <th class="p-2 font-normal border border-r-black border-b-black">月</th>
+                                <th class="p-2 font-normal border border-r-black border-b-black">職歴</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody class= "text-sm w-full ">
+                            {% for user_work in personal_user.workhistory_set.all %}
+                            <!-- masuk -->
+                                <tr class="">
+                                    <td class="p-2 text-center border   border-b-black border-x-black ">{{user_work.country}}</td>
+                                    <td class="p-2 text-center border border-b-black border-x-black">{{user_work.join_year}}</td>
+                                    <td class="p-2 text-center border border-b-black border-x-black">
+                                        
+                                        {% if user_work.join_month %}
+                                            {{user_work.join_month}}
+                                            
+                                        {% endif %}
+                                            
+                                    </td>
+
+                                    <td class="p-2 pl-5 text-start border  border-b-black border-x-black space-x-2">
+                                        <span>
+                                            {{user_work.work}}
+                                        </span>
+                                        <span>
+                                            入学
+                                        </span>
+                                        </td>
+                                </tr>
+                                <!-- keluar -->
+                                <tr class="">
+                                    <td class="p-2 border-b-black text-center border border-x-black ">{{user_work.country}}</td>
+                                    <td class="p-2 border-b-black text-center border border-x-black">{{user_work.leave_year}}</td>
+                                    <td class="p-2 border-b-black text-center border border-x-black">
+                                        {% if user_work.leave_month %}
+                                            {{user_work.leave_month}}
+                                            
+                                        {% endif %}
+                                    
+                                    </td>
+                                    <td class="p-2 border-b-black pl-5 text-start border border-x-black space-x-2">
+                                        <span>
+                                            {{user_work.work}}
+                                        </span>
+                                        <span>
+                                            卒業
+                                        </span>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            <td class="p-5 border-b-black text-center border border-x-black "></td>
+                            <td class="p-5 border-b-black text-center border border-x-black"></td>
+                            <td class="p-5 border-b-black text-center border border-x-black"></td>
+                            <td class="p-5 border-b-black pl-5 text-start border border-x-black space-x-2"></td>
+                        </tbody>
+
+                        
+                    
+                </table>
+                <table class="w-full mt-14" id="tableLicence">
+                    <thead class="w-full font-normal">
+                        <tr class="pt-10 ">
+                            <th class="p-2 font-normal border border-black">国</th>
+                            <th class="p-2 font-normal border border-black">年</th>
+                            <th class="p-2 font-normal border border-black">月</th>
+                            <th class="p-2 font-normal border border-black">免許・資格</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                        {% for user_Licence in personal_user.licenseorqualification_set.all %}
+                        <tr class="">
+                            <td class="p-2 border-b-black text-center border border-x-black ">
+                                {% if user_Licence.country %}
+                                
+                                    {{user_Licence.country}}
+                                    {% endif %}
+                                </td>
+                            <td class="p-2 border-b-black text-center border border-x-black">
+                                {% if user_Licence.year  %}
+                                
+                                        {{user_Licence.year}}
+                                    {% endif %}
+                                </td>
+                            <td class="p-2 border-b-black text-center border border-x-black">
+                                {% if user_Licence.month %}
+                                
+                                    {{user_Licence.month}}
+                                    {% endif %}
+                                </td>
+                            <td class="p-2 border-b-black pl-5 text-start border border-x-black space-x-2">
+                                {% if user_Licence.license_or_qualification %}
+                                
+                                    {{user_Licence.license_or_qualification}}
+                                    {% endif %}
+                                </td>
+                        </tr>
+                        {% endfor %}
+                        <tr class="">
+                            <td class="p-5 border-b-black text-center border border-x-black "></td>
+                            <td class="p-5 border-b-black text-center border border-x-black"></td>
+                            <td class="p-5 border-b-black text-center border border-x-black"></td>
+                            <td class="p-5 border-b-black pl-5 text-start border border-x-black space-x-2"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table class="w-full mt-14" id="">
+                    <thead class="w-full font-normal">
+                        <tr class="pt-10 ">
+                            <th class="p-2 font-normal border border-black">扶養家族数（配偶者を除く）</th>
+                            <th class="p-2 font-normal border border-black">配偶者</th>
+                            <th class="p-2 font-normal border border-black">配偶者の扶養義務</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                        {% for user in personal_user.personaldata_set.all %}
+                            <tr class="">
+                                <td class="p-2 border-b-black text-center border border-x-black ">
+                                    
+                                    {% if user.dependens %}
+                                        {{user.dependens}}
+                                    {% endif %}
+                                
+                                </td>
+                                <td class="p-2 border-b-black text-center border border-x-black">
+                                    
+                                    {% if user.pairs %}
+                                        {{user.pairs}}
+                                    {% endif %}
+                                
+                                </td>
+                                <td class="p-2 border-b-black text-center border border-x-black">
+                                    
+                                    {% if user.spouse_support_obligation %}
+                                        {{user.spouse_support_obligation}}
+                                    {% endif %}
+                                
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            <tr class="">
+                                <td class="p-5 border-b-black text-center border border-x-black "></td>
+                                <td class="p-5 border-b-black text-center border border-x-black"></td>
+                                <td class="p-5 border-b-black text-center border border-x-black"></td>
+                            </tr>
+                        </tbody>
+                </table>
+
+                <!-- table level and hobby -->
+                
+                <div class="grid grid-cols-2 mt-14 w-full border border-black">
+                    
+                    <div class="flex flex-col border p-2 border-r-black">
+                        <span class="text-sm">
+                            言語スキル
+                        </span>
+                        <div class="flex flex-col space-y-1 mt-2 pb-5">
+                            <span>
+                                {% for user in personal_user.personaldata_set.all %}
+
+                                    {{user.default_language}}
+                                  
+                                {% endfor %}
+                            </span>
+                            
+                                {% for user in personal_user.languageskill_set.all %}
+                          
+                              
+                            
+                            {% if user.japanese_level %}
+                            <span class=>
+                            
+                            日本語 {{user.japanese_level}}
+                            
+                                
+                            </span>
+                            {% endif %}
+                            
+                                {% if user.english_level %}
+                                    <span class="">
+                                        {{user.english_level}}
+                                    </span>
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                            
+                    </div>
+                    <div class="flex flex-col border p-2 ">
+                        <span class="text-sm">
+                            趣味・特技
+                        </span>
+                        <div class="flex flex-col space-y-1 mt-2">
+                            <span>
+                                {% for user in personal_user.personaldata_set.all %}
+
+                                    {{user.hobbie}}
+
+                                  
+                                {% endfor %}
+                            </span>
+                        </div>
+
+                    </div>
+                    
+
+
+                </div>
+                <!--  close table level and hobby --> 
+
+                <!-- Reason_for_coming -->
+                {% for user in personal_user.personaldata_set.all %}
+                <div class="w-full mt-14 border border-black">
+                    <div class="flex flex-col space-y-3 pb-20 p-2">
+                        <span>
+                            来日のきっかけ
+                        </span>
+                          
+                        <span>
+                            {% if user.Reason_for_coming %}
+                                {{user.Reason_for_coming}}
+                            {% endif %}
+                        </span>
+                    </div>
+                    
+                    <div class="flex flex-col space-y-3  border p-2 pb-20  border-slate-100 border-t-black">
+                        <span>
+                            志望動機・自己PR
+                        </span>
+                        <span>
+                            {% if user.motifation %}
+                                {{user.motifation}}
+                            {% endif %}
+                        </span>
+                    </div>
+
+
+                    
+                    
+                </div>
+                <!-- table request -->
+                
+                <table class="w-full mt-14" id="">
+                    <thead class="w-full font-normal">
+                        <tr class="pt-10 ">
+                            <th class="p-2 font-normal border border-black">本人希望記入欄（特に給料・職種・勤務時間・勤務地・その他についての希望などがあれば記入）</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                        {% for user in personal_user.personaldata_set.all %}
+                        
+                            {% if user.request %}
+                                <tr class="">
+                                    <td class="p-2 border-b-black text-center border border-x-black ">{{user.request}}</td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                        <tr class="">
+                            <td class="p-5 border-b-black text-center border border-x-black "></td>
+                        </tr>
+                        <tr class="">
+                            <td class="p-5 border-b-black text-center border border-x-black "></td>
+                        </tr>
+                    </tbody>
+                </table>
+                {% endfor %}
+                
+                    
+                
+       
+        </div>
+    </div>
+    
+    
+
+</div>
+
+{% endfor %}
+

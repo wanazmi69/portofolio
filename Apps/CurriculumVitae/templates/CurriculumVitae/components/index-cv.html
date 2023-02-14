@@ -1,0 +1,39 @@
+
+    
+<div class="flex flex-col justify-center items-center w-full h-screen bg-slate-100">
+    <div class="flex flex-col justify-center items-center shadow-lg rounded-lg bg-white px-20 py-10 text-white text-sm">
+
+        {% if request.user.is_authenticated %}
+
+        <div class="w-full">
+            {% for x in dataUsers %}
+            <ul class=" flex flex-col items-center justify-center">
+                <li class="w-full flex justify-center items-center">
+                    <a class="flex items-center justify-center bg-sky-600 p-2 rounded-md w-full" href="{% url 'mycv' %}">My Curriculum Vitae</a>
+                </li>
+                <li>
+
+                </li>
+                {% if x.full_name == None %}
+                <li class="w-full flex justify-center items-center">
+                    <a class="flex items-center justify-center bg-sky-600 p-2 rounded-md w-full"  href="{% url 'createCV' %}">Create CV </a>
+                </li>
+                {% endif %}
+                    
+                </ul>
+                {% endfor %}
+            </div>
+        {% else %}
+        <ul class="flex flex-col items-center justify-center space-y-5  text-white w-full ">
+            <li class="w-full flex justify-center items-center">
+                <a class="flex items-center justify-center bg-sky-600 p-2 rounded-md w-full" href="{% url 'mycv' %}">My Curriculum Vitae</a>
+            </li>
+            <li class="w-full flex justify-center items-center">
+                <a class="flex items-center justify-center bg-sky-600 p-2 rounded-md w-full"  href="{% url 'createCV' %}">Create CV </a>
+            </li>
+        </ul>
+        {% endif %}
+    </div>
+
+</div>
+    

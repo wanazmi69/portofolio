@@ -1,0 +1,39 @@
+<nav class="fixed top-0 flex z-50 justify-between items-center w-full p-3 px-5 md:px-20 font-[Poppins]  bg-white shadow-sm">
+    <a class="text-lg font-bold" href="/">
+        Wan Azmi
+    </a>
+    <ul class="hidden md:flex space-x-5">
+        <li>
+            <a href="/">Home</a>
+        </li>
+        <li>
+            <a href="/projects/curriculum-vitae/">Portfolio</a>
+
+        </li>
+        <li>
+            <a href="/projects/">Projects</a>
+
+        </li>
+        <li>
+            <a href="/">Contact</a>
+
+        </li>
+        
+        {% if user.is_authenticated %}
+            <li>
+                <a href="/projects/curriculum-vitae/logout">
+                    Logout
+                </a>
+            </li>
+        {% endif %}
+        
+    </ul>
+        {% if user.is_authenticated %}
+            <div class="md:hidden">
+                <a href="/projects/curriculum-vitae/logout">
+                    Logout
+                </a>
+            </div>
+        {% endif %}
+
+</nav>

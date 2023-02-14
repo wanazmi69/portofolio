@@ -1,0 +1,155 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+
+/* slide forms create cv */
+.slide {
+  display: none;
+}
+
+.my-slider-progress {
+  background: rgb(219, 205, 205);
+}
+
+.my-slider-progress-bar {
+  background: rgb(72, 154, 231);
+  height: 2px;
+  transition: width 400ms ease;
+  width: 0;
+}
+
+/* .slide-utama {
+  display: block;
+} */
+
+
+/* swiper slider */
+/* .swiper {
+  max-width: 28rem;
+} */
+
+/*   Headers Frame */
+.segitiga {
+  background: linear-gradient(to bottom right, #fff 0%, #fff 50%, #e77931 50%, #e77931 100%);
+}
+
+.boreder-top-dashed {
+  border-top: dashed;
+  border-width: 1px;
+}
+
+
+  
+ 
+  /* Heading Underline */
+/*   
+  .underline {
+    display: inline-block;
+    position: relative;
+  }
+  
+  .underline:before {
+    background-color: #fff;
+    bottom: -15px;
+    content: '';
+    height: 2px;
+    left: 0;
+    position: absolute;
+    width: 110%;
+  } */
+
+  /*  */
+  @keyframes numberAnimation {
+    0% {
+      content: "0";
+    }
+    100% {
+      content: "100";
+    }
+  }
+  
+  .counter {
+    animation: numberAnimation 10s linear;
+  }
+
+
+@keyframes load{
+  from {
+    width: 0%
+  }
+}
+@-webkit-keyframes load{
+  from {
+    width: 0%
+  }
+}
+@-moz-keyframes load{
+  from {
+    width: 0%
+  }
+}
+@-o-keyframes load{
+  from {
+    width: 0%
+  }
+}
+
+.bar{
+  background-color: #EEE;
+  padding: 2px;
+  border-radius: 15px;
+  margin-bottom: 5px;
+
+}
+.bar::before{
+  content:  attr(data-skill);
+  background-color: #f3b0ff;
+  display: inline-block;
+  padding: 5px 0 5px 10px;
+  border-radius: inherit;
+  animation: load 2s 0s;
+  -webkit-animation: load 2s 0s;
+  -moz-animation: load 2s 0s;
+  -o-animation: load 2s 0s;
+}
+
+.bar.front::before{
+  background-color: #ffcc33;
+}
+.bar.back::before{
+  background-color: #a6cfe3;
+}
+
+.bar.python::before{
+  width: calc(65% - 10px);
+}
+.bar.django::before{
+  width: calc(60% - 10px);
+}
+.bar.html::before{
+  width: calc(70% - 10px);
+}
+.bar.tailwind::before{
+  width: calc(70% - 10px);
+}
+.bar.css::before{
+  width: calc(40% - 10px);
+}
+.bar.javascript::before{
+  width: calc(30% - 10px);
+}
+
+
+.bar.cloud.git::before{
+  width: calc(50% - 10px);
+}
+
+
+
+
+
+ 

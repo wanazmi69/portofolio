@@ -1,0 +1,47 @@
+<div class="flex justify-center  pt-20 items-center w-full h-screen bg-slate-50">
+    <form action="{% url 'createCV' %}" method="POST"  enctype="multipart/form-data"
+    class="max-w-lg pt-20"
+    >
+        {% csrf_token %}
+        {{formPersonalData.as_p}}
+        {{formBacgroundSchool.as_p}}
+        {{formWorkHistory.as_p}}
+        {{formLicenceOrQualification.as_p}}
+        {{formLanguageSkill.as_p}}
+
+    </form>
+</div>
+
+
+<script>
+    const slides = document.querySelectorAll('.slide');
+    slides[0].style.display ='block';
+
+    // const slidesUtama = document.querySelectorAll('.slide-utama');
+    let currentSlide = 0;
+    console.log(currentSlide)
+    function showSlide(n) {
+        // slidesUtama[currentSlide].style.display = 'none';
+      
+        slides[currentSlide].style.display ='none';
+        currentSlide = (currentSlide + n) % slides.length;
+        slides[currentSlide].style.display = 'block'
+
+
+    }
+    const nextBTN = document.querySelector('#next-btn');
+    const backBTN = document.querySelector('#back-btn');
+
+    nextBTN.addEventListener('click', function() {
+      showSlide(1)
+      console.log(currentSlide)
+    
+    })
+    backBTN.addEventListener('click', function() {
+        if(currentSlide <= 0){
+            backBTN.type = 'text'
+        }
+        showSlide(-1)
+    
+    })
+</script>

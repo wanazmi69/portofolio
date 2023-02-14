@@ -1,0 +1,96 @@
+<!-- Style the bar as you like -->
+
+<div class="flex  justify-center items-center w-full h-screen bg-slate-50">
+    <form action="" class="p-5 pt-36 md:p-0">
+        {% csrf_token %}
+        {% for user in formPersonalData %}
+        <div class="splide  bg-white px-5 py-10 rounded-md max-w-md overflow-hidden ">
+            <div class="z-0  my-slider-progress -translate-y-4 md:-translate-y-7 ">
+                <div class="my-slider-progress-bar p-1"></div>
+            </div>
+
+            <div class="splide__track p-5 z-50">
+                <ul class="splide__list w-full ">
+                    <!-- form 1 -->
+                    <li class="splide__slide space-y-5 text-xs px-2">
+                        {% include 'CurriculumVitae/components/createForms/form1.html' %}
+                    </li>
+                    <!-- form 2 -->
+                    <li class="splide__slide space-y-5 text-xs px-2">
+                        {% include 'CurriculumVitae/components/createForms/form2.html' %}
+                    </li>
+                    <!-- form 3 -->
+                    <li class="splide__slide space-y-5 text-xs px-2">
+                        {% include 'CurriculumVitae/components/createForms/form3.html' %}
+                    </li>
+                    <!-- form 4 -->
+                    <li id="last-form" class="splide__slide space-y-5 text-xs px-2">
+                        {% include 'CurriculumVitae/components/createForms/form4.html' %}
+                    </li>
+
+                </ul>
+            </div>
+
+
+            <!-- button next and back -->
+            <div class="flex justify-between text-xs w-full pt-5 md:pt-14 splide__arrows">
+                <button id="back" type="button"
+                    class="flex  splide__arrow--prev justify-center items-center px-4 py-2 border rounded-md border-slate-300">
+                    <span class="material-symbols-outlined">
+                        navigate_before
+                    </span>
+                    <span>
+                        Back
+                    </span>
+                </button>
+                <button id="next" onclick="cekForm" type="button"
+                    class="flex  splide__arrow--next justify-center items-center px-4 py-2 border rounded-md border-slate-300">
+                    <span>
+                        Next
+                    </span>
+                    <span class="material-symbols-outlined">
+                        navigate_next
+                    </span>
+
+                </button>
+            </div>
+            <!-- <button type="submit" class="justify-center items-center px-4 py-2 border rounded-md border-slate-300">CREATECV</button> -->
+
+            <!-- Add the progress bar element -->
+        
+
+        </div>
+
+        {% endfor %}
+    </form>
+</div>
+
+
+<script>
+
+    var splide = new Splide('.splide', {
+        pagination: 0,
+        // drag: false,
+
+    });
+    var bar  = splide.root.querySelector( '.my-slider-progress-bar' );
+    
+    // Updates the bar width whenever the carousel moves:
+    splide.on( 'mounted move', function () {
+        var end  = splide.Components.Controller.getEnd() + 1;
+        var rate = Math.min( ( splide.index + 1 ) / end, 1 );
+        bar.style.width = String( 100 * rate ) + '%';
+    } );
+    function cekForm() {
+        const LastForm = document.querySelector( '#last-form' );
+        if (LastForm.classList.contains('is-active')){
+            console.log('halaman akhir')
+        }
+    }
+    splide.mount();
+
+    
+
+
+
+</script>
