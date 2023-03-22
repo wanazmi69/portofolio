@@ -1,6 +1,4 @@
 pip install weasyprint
-
-
 Django==4.0.5
 django-on-heroku==1.1.2
 django-tailwind @ git+https://github.com/timonweb/django-tailwind.git@37b81f631edddac04844413bb5635a1c73e5af30

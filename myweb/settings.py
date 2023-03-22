@@ -33,7 +33,6 @@ ALLOWED_HOSTS = [
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -61,6 +60,7 @@ INSTALLED_APPS = [
 
 # WKTHMLTOPDF_PATH = "/usr/local/bin/wkhtmltox/bin/wkhtmltopdf"
 TAILWIND_APP_NAME = 'theme'
+TAILWIND_CSS_PATH = 'css/dist/styles.css'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -73,6 +73,7 @@ MIDDLEWARE = [
 
     
 ]
+NPM_BIN_PATH = '/usr/local/bin/npm'
 
 # SIDE_ID = 1
 # SOCIALACCOUNT_LOGIN_ON_GET= True
@@ -121,6 +122,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'myweb.wsgi.application'
 
 
+
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
@@ -131,6 +133,16 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'getu9153_curriculum_vitae',
+#         'USER': 'getu9153_wanazmi',
+#         'PASSWORD': 'iHu9ZSvtjRFzT_S',
+#         'HOST': '217.21.72.156',
+#         'PORT': '3306',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators

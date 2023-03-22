@@ -174,163 +174,21 @@
         </span>
 
         <div class="flex flex-col md:flex-row items-center justify-center md:space-x-20">
-            <!-- <div>
-                <img class="w-96" src="{% static 'images/details.png' %}" alt="">
-            </div> -->
-            <div class="">
-                <div class="flex items-start text-lg font-medium">
-                    Python
-                </div>
-                <ul class="flex flex-col space-y-2 text-sm">
-                    <li class="flex items-center space-x-2">
-                        <span class="material-symbols-outlined">
-                            arrow_circle_right
-                        </span>
-                        <span>
-                            Function 
-                        </span>
-                    </li>
-                    <li class="flex items-center space-x-2">
-                        <span class="material-symbols-outlined">
-                            arrow_circle_right
-                        </span>
-                        <span>
-                            OOP (Object Oriented Programming)
-                        </span>
-                    </li>
-                </ul>
-                <div class="flex items-start text-lg font-medium">
-                    Back-End
-                </div>
-                <ul class="flex flex-col space-y-2 text-sm">
-                    <li class="flex items-center space-x-2">
-                        <span class="material-symbols-outlined">
-                            arrow_circle_right
-                        </span>
-                        <span>
-                            ORM (Object-Relational Mapping)
-                        </span>
-                    </li>
-                    <li class="flex items-center space-x-2">
-                        <span class="material-symbols-outlined">
-                            arrow_circle_right
-                        </span>
-                        <div class="flex flex-col md:space-x-1 md:flex-row">
-                            <span>
-                                Flow Of Data 
-                            </span>
-                            <span>
-                                (Forms -> Views -> Database -> and Back)
-                            </span>
-                        </div>
-                    </li>
-                    <li class="flex items-center space-x-2">
-                        <span class="material-symbols-outlined">
-                            arrow_circle_right
-                        </span>
-                        <span>
-                            Authentication and Authorization
-                        </span>
-                    </li>
-                    <li class="flex items-center space-x-2">
-                        <span class="material-symbols-outlined">
-                            arrow_circle_right
-                        </span>
-                        <span>
-                            REST API
-                        </span>
-                    </li>
-                </ul>
-                <div class="flex items-start text-lg font-medium">
-                    Frond-End
-                </div>
-                <ul class="flex flex-col space-y-2 text-sm">
-                    <li class="flex items-center space-x-2">
-                        <span class="material-symbols-outlined">
-                            arrow_circle_right
-                        </span>
-                        <span>
-                            HTML
-                        </span>
-                    </li>
-                    <li class="flex items-center space-x-2">
-                        <span class="material-symbols-outlined">
-                            arrow_circle_right
-                        </span>
-                        <span>
-                            CSS
-                        </span>
-                    </li>
-                    <li class="flex items-center space-x-2">
-                        <span class="material-symbols-outlined">
-                            arrow_circle_right
-                        </span>
-                        <span>
-                            Tailwind
-                        </span>
-                    </li>
-                    <li class="flex items-center space-x-2">
-                        <span class="material-symbols-outlined">
-                            arrow_circle_right
-                        </span>
-                        <span>
-                            Javascript
-                        </span>
-                    </li>
-                </ul>
-                <div class="flex items-start text-lg font-medium">
-                    Other
-                </div>
-                <ul class="flex flex-col space-y-2 text-sm">
-                    <li class="flex items-center space-x-2">
-                        <span class="material-symbols-outlined">
-                            arrow_circle_right
-                        </span>
-                        <span>
-                            GIT
-                        </span>
-                    </li>
-                    <li class="flex items-center space-x-2">
-                        <span class="material-symbols-outlined">
-                            arrow_circle_right
-                        </span>
-                        <span>
-                            Docker
-                        </span>
-                    </li>
-                    <li class="flex items-center space-x-2">
-                        <span class="material-symbols-outlined">
-                            arrow_circle_right
-                        </span>
-                        <span>
-                            Integrating with 3rd party APIs
-                        </span>
-                    </li>
-                    <li class="flex items-center space-x-2">
-                        <span class="material-symbols-outlined">
-                            arrow_circle_right
-                        </span>
-                        <span>
-                            Deployment
-                        </span>
-                    </li>
-    
-                </ul>
-
-            </div>  
-            
-
+            {% include "components/detail-skills.html" %}
         </div>
+
     </div>
 
-    <div class="flex relative flex-col justify-center items-center md:px-5 pt-10 w-full">
-        <span class="flex items-center justify-center text-red-400 text-4xl font-bold py-10 w-full">
+    <div class="flex relative flex-col justify-center items-center md:px-5 px-5 pt-10 pb-20 w-full  bg-[#8aa0e8] bg-[#6285F4] overflow-hidden">
+        <span class="flex items-center justify-center text-white text-4xl font-bold py-10 w-full">
             Youtube Channels
         </span>
         
         {% include "components/youtube.html" %}
         
-        
+        <div class="absolute bottom-0 right-0 z-0">
+            <img class="w-[600px]" src="{% static 'images/computer.webp' %}" alt="">
+        </div>
     </div>
     <div class="flex flex-col justify-center items-center pt-20 p-5">
         

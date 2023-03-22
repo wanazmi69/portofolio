@@ -37,7 +37,7 @@
             </span>
         </div>
     </div>
-    <input type="text" name="{{user.furigana.name}}" value="{{user.furigana.value}}"
+    <input type="text" name="{{user.furigana.name}}" value="{% if user.furigana.value %}{{user.furigana.value}}{% endif %}"
     placeholder="ワン　アズミ"
     required
     class="text-sm placeholder-gray-500 pl-6 pr-4 rounded-md border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
@@ -87,7 +87,7 @@
             +81
         </span>
 
-        <input type="text" name="{{user.phone_number.name}}" value="{{user.phone_number.value}}"
+        <input type="number" name="{{user.phone_number.name}}" value="{% if user.phone_number.value %}{{user.phone_number.value}}{% endif %}"
         placeholder="802xxxxxxx"
         class="text-sm placeholder-gray-500 pl-6 pr-4 rounded-md border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
         >

@@ -8,16 +8,14 @@
         <div class="w-full">
             {% for x in dataUsers %}
             <ul class=" flex flex-col items-center justify-center">
-                <li class="w-full flex justify-center items-center">
-                    <a class="flex items-center justify-center bg-sky-600 p-2 rounded-md w-full" href="{% url 'mycv' %}">My Curriculum Vitae</a>
-                </li>
-                <li>
-
-                </li>
                 {% if x.full_name == None %}
-                <li class="w-full flex justify-center items-center">
-                    <a class="flex items-center justify-center bg-sky-600 p-2 rounded-md w-full"  href="{% url 'createCV' %}">Create CV </a>
-                </li>
+                    <li class="w-full flex justify-center items-center">
+                        <a class="flex items-center justify-center bg-sky-600 p-2 px-4 rounded-md w-full"  href="{% url 'createCV' %}">Create CV </a>
+                    </li>
+                {% else %}
+                    <li class="w-full flex justify-center items-center pb-2">
+                        <a class="flex items-center justify-center bg-sky-600 p-2 rounded-md w-full" href="{% url 'mycv' %}">My Curriculum Vitae</a>
+                    </li>
                 {% endif %}
                     
                 </ul>
