@@ -24,7 +24,7 @@
                         {% include 'CurriculumVitae/components/createForms/form3.html' %}
                     </li>
                     <!-- form 4 -->
-                    <li id="form last-form" class="splide__slide space-y-5 text-xs px-2">
+                    <li class="splide__slide space-y-5 text-xs px-2">
                         {% include 'CurriculumVitae/components/createForms/form4.html' %}
                     </li>
 
@@ -34,7 +34,7 @@
 
             <!-- button next and back -->
             <div class="flex justify-between text-xs w-full pt-5 md:pt-14 splide__arrows">
-                <button id="back" type="button"
+                <button id="back" type="button" onclick="backData()"
                     class="flex  splide__arrow--prev justify-center items-center px-4 py-2 border rounded-md border-slate-300">
                     <span class="material-symbols-outlined">
                         navigate_before
@@ -43,7 +43,8 @@
                         Back
                     </span>
                 </button>
-                <button id="" onclick="nextData()" type="button" 
+
+                <button id="btnNext" onclick="nextData()" type="button" 
                     class="flex  justify-center items-center px-4 py-2 border rounded-md border-slate-300" >
                     <span>
                         Next
@@ -57,7 +58,7 @@
                     class=" splide__arrow--next hidden" disabled>
                 </button>
             </div>
-            <!-- <button type="submit" class="justify-center items-center px-4 py-2 border rounded-md border-slate-300">CREATECV</button> -->
+           <button id="btnSubmit" type="submit" class="hidden justify-center items-center px-4 py-2 border rounded-md border-slate-300">CREATECV</button>
 
             <!-- Add the progress bar element -->
         
@@ -95,84 +96,46 @@
     }
     splide.mount();
 
-    // const slide = document.getElementById('splide01-slide01')
-    // const NextButon = document.getElementById('next')
-    // const input = slide.querySelector('input')
-    
-    
-    // input.addEventListener( 'input', function() {
-    //     if(input.value === ""){
-    //         NextButon.disabled = true;
-    //     }else{
-    //         NextButon.disabled = false;
+ 
 
-    //     }
-    // })
-    function nextData(){
-        // const isActive = document.querySelector('.is-active')
-        const NextButon = document.getElementById('next')
-        const btnHidden = document.getElementById('btnHidden')
-        // let next = true
-        btnHidden.disabled = false
-        const inputs = document.querySelectorAll('.is-active.is-visible input[required]' )
-        console.log(inputs)
+  function nextData(){
+
+        let nextBtn = true
+
+        const inputs = document.querySelectorAll('.is-active.is-visible .border-gray-400[required]' )
+       
+        // looping input
         inputs.forEach(function(input){
-            if(input.value !== ""){
-                btnHidden.click()
-            }else{
-                btnHidden.disabled = true
-            }
+            console.log(input.value)
+            if (input.value == ""){
+                nextBtn = false
+                return
+            } 
         })
-        
 
+        if (nextBtn == true){
+            btnHidden.click()
+        }
+
+        const akhir = document.querySelector("#splide01-slide03").classList.contains("is-active");
+        if(akhir == true){
+            document.querySelector("#btnNext").style.display = "none"
+            document.querySelector("#btnSubmit").style.display = "flex"
+        }else{
+            document.querySelector("#btnNext").style.display = "flex"
+            document.querySelector("#btnSubmit").style.display = "none"
+        }
+      
+        
+    }
+
+    function backData(){
+         akhir = document.querySelector("#splide01-slide04").classList.contains("is-active");
+        if(akhir == true){
+            document.querySelector("#btnNext").style.display = "flex"
+            document.querySelector("#btnSubmit").style.display = "none"
+        }
     }
     
-    nextData()
-//     const NextButon = document.getElementById('next')
-//     // const BackButon = document.getElementById('back')
-//     // NextButon.disabled = true;
-//     document.querySelectorAll('.splide__slide').forEach(function(mySlide) {
-//     const inputs = mySlide.querySelectorAll('input[type="text"][required]');
-//     inputs.forEach(function(input) {
-//       input.addEventListener('keyup', function() {
-//         let allInputsFilled = true;
-//         inputs.forEach(function(input) {
-//           if (input.value.trim() === '') {
-//             allInputsFilled = false;
-//           }
-//         });
-//         if (allInputsFilled) {
-//             NextButon.disabled = false;
-//         } else {
-//             NextButon.disabled = true;
-//         }
-//       });
-//     });
-//   });
-
-
-//     document.querySelectorAll('splide__slide').forEach(function(mySlide) {
-//         const inputs = mySlide.querySelectorAll('input[type="text"]');
-//         inputs.forEach(function(input) {
-//         input.addEventListener('keyup', function() {
-//             let atLeastOneInputFilled = false;
-//             inputs.forEach(function(input) {
-//             if (input.value.trim() !== '') {
-//                 atLeastOneInputFilled = true;
-//             }
-//             });
-//             if (atLeastOneInputFilled) {
-//             NextButon.style.display = 'flex';
-//             } else {
-//             NextButon.style.display = 'none';
-//             }
-//         });
-//         });
-//   });
-
-    
-
-
-
 
 </script>
