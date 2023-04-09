@@ -24,15 +24,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-romo+@^gb(no8*w2y5*=up!je_bi9re*qzj=-xo4k(^jcp@v--'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1'
-]
-INTERNAL_IPS = [
-    "127.0.0.1",
-]
+DEBUG = True
+if DEBUG:
+    ALLOWED_HOSTS = ['*']
+else:
+    ALLOWED_HOSTS = ['*', '.vercel.app', '.now.sh']
+# ALLOWED_HOSTS = [
+#     'localhost',
+#     '127.0.0.1'
+# ]
+# INTERNAL_IPS = [
+#     "127.0.0.1",
+# ]
 # Application definition
 
 INSTALLED_APPS = [
@@ -142,10 +145,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, '/static/')
-STATICFILES_DIRS = [
-    BASE_DIR  / 'static',
-]
+if DEBUG:
+    STATICFILES_DIRS = os.path.join(BASE_DIR,'static'),
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
