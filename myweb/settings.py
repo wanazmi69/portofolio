@@ -28,7 +28,7 @@ DEBUG = False
 if DEBUG:
     ALLOWED_HOSTS = ['*']
 else:
-    ALLOWED_HOSTS = ['*', '.vercel.app', '.now.sh']
+    ALLOWED_HOSTS = ['*']
 # ALLOWED_HOSTS = [
 #     'localhost',
 #     '127.0.0.1'
