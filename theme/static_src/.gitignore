@@ -1,0 +1,7 @@
+theme/static_src/node_modules
+.env
+/.env
+.env/
+env
+/node_modules
+node_modules

@@ -1,0 +1,76 @@
+{% load static tailwind_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>My Page</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	{% tailwind_css %}
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;1,100;1,400&display=swap');
+	</style>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Bad+Script&display=swap');
+	</style>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Marck+Script&display=swap');
+	</style>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300&display=swap');
+	</style>
+
+	<script src="{% static 'js/sweet-scroll.min.js' %}"></script>
+
+
+
+	<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
+	<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+	<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script> -->
+
+</head>
+
+<body class=" bg-white">
+
+
+	{% block error404 %}
+
+	{% endblock error404 %}
+
+	{% block Navbar %}
+
+	{% endblock Navbar %}
+
+	{% block Header %}
+
+	{% endblock Header %}
+
+	{% block Portfolio %}
+
+	{% endblock Portfolio %}
+
+
+
+	<script>
+		document.addEventListener(
+			'DOMContentLoaded',
+			() => {
+				const scroller = new SweetScroll({
+					duration: 2000,
+					easing: 'easeInQuad',
+				});
+			},
+			false,
+		);
+
+	</script>
+</body>
+
+</html>

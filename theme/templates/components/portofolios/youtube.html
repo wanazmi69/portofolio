@@ -1,0 +1,23 @@
+<div class="shadow-xl content-center  items-center justify-center  grid gap-5  md:grid-cols-2 lg:grid-cols-3  p-10 md:px-14 w-full lg:w-max overflow-hidden  bg-white z-10 ">
+    {% for video in videos %}
+    <a href="https://www.youtube.com/watch?v={{video.videoId}}"
+        data-aos="fade-up"
+        data-aos-duration="2000"
+        data-aos-offset="200"
+        target="_blank"
+        class="bg-blue-300 w-80 h-64 static rounded-lg m-8 ">
+        <div class="flex flex-col bg-white w-80 h-64  -m-2 hover:m-0 absolute rounded-lg shadow-lg hover:shadow-2xl transition-all duration-150 ease-out hover:ease-in overflow-hidden ">
+            <div class="flex items-center justify-center w-full h-full ">
+                <img class="  w-80 h-full object-cover" src="https://img.youtube.com/vi/{{video.videoId}}/maxresdefault.jpg"alt="">
+            </div>
+            <div class=" w-full bg-[#F0EBFA]">
+                <p class="m-4 text-xs leading-4">
+                    {% for title in video.title.runs %}
+                        {{title.text}}
+                    {% endfor %}
+                </p>
+            </div>
+        </div>
+    </a>
+    {% endfor %}
+</div>

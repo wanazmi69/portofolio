@@ -1,0 +1,91 @@
+{% load static %}
+<div class="flex flex-col md:flex-row items-center justify-center w-full ">
+    <div class="flex flex-col lg:flex-row justify-center items-center lg:space-x-80 px-5 space-y-20 md:space-y-0 lg:px-40 w-full  ">
+        <div
+        data-aos="fade-up"
+        data-aos-duration="2000"
+        data-aos-offset="400"
+        class="flex flex-col md:flex-row justify-center  text-xl md:text-3xl  md:space-x-2  ">
+           <span>
+            Responsive Design
+           </span>
+        </div>
+        <div class="flex justify-center items-center w-full overflow-hidden lg:overflow-visible lg:w-[700px] pt-20 ">
+            <div class="flex flex-col justify-center space-y-10 lg:space-y-0 lg:justify-start items-center lg:items-start w-[400px] lg:flex-row lg:relative  ">
+                <div class="transition duration-700 ease-in-out  z-0 hover:z-10 hover:-translate-y-10 hover:scale-110 ">
+                    <img
+                    data-aos="fade-left"
+                    data-aos-duration="2000"
+                    data-aos-offset="400"
+                    class=" lg:top-0 w-72 lg:w-[400px]  " src="{% static 'images/macbook.png' %}" alt="">
+    
+                </div>
+                <div class="lg:absolute lg:-left-24 transition z-0 hover:z-10   ease-in-out duration-700 hover:-translate-y-10 ">
+                    <img
+                    data-aos="fade-down"
+                    data-aos-duration="2000"
+                    data-aos-offset="100"
+                    class="  w-36 lg:w-36 hover:w-40    " src="{% static 'images/ip3D.png' %}" alt="">
+    
+                </div>
+                <div class="lg:absolute lg:-right-36 z-0 hover:w-64 hover:z-10 hover:-translate-y-10 transition ease-in-out duration-700">
+                    <img
+                    data-aos="fade-up"
+                    data-aos-duration="2000"
+                    data-aos-offset="500"
+                    class=" lg:top-5 w-64 lg:w-56 " src="{% static 'images/tablet3D.png' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--  -->
+<div class="flex flex-col md:flex-row items-center justify-center md:space-x-20 w-full">
+    <div class="flex flex-col  justify-between items-center px-5 space-y-20  lg:px-52 w-full ">
+        <div class="flex flex-col md:flex-row justify-center  text-3xl md:text-4xl  md:space-x-2 ">
+           <span>
+            Database
+           </span>
+        </div>
+        <ul class="flex flex-col lg:flex-row space-y-10 lg:space-y-0 justify-center items-center lg:space-x-20">
+            <li class=" flex flex-col items-center justify-center">
+                <img class="md:w-16 w-12 " src="{% static 'svg/postgresql.svg' %}" alt="">
+            </li>
+            <li class=" flex flex-col items-center justify-center">
+                <img class="md:w-28 w-20" src="{% static 'svg/mysql.svg' %}" alt="">
+            </li>
+            <li class=" flex flex-col items-center justify-center">
+                <img class="md:w-16 w-14" src="{% static 'svg/firebase.svg' %}" alt="">
+            </li>
+            <li class=" flex flex-col items-center justify-center">
+                <img class="md:w-20 w-16" src="{% static 'svg/mongodb.svg' %}" alt="">
+            </li>
+        </ul>
+    </div>
+</div>
+<!--  -->
+<div class="flex flex-col md:flex-row items-center justify-center md:space-x-20 w-full">
+    <div class="flex flex-col  justify-between items-center px-5 space-y-20  lg:px-52 w-full ">
+        <div class="flex flex-col md:flex-row justify-center  text-3xl md:text-4xl  md:space-x-2 ">
+           <span>
+            Deployment
+           </span>
+        </div>
+        <ul class="flex flex-col lg:flex-row space-y-10 lg:space-y-0 justify-center items-center lg:space-x-20">
+            <li class=" flex flex-col items-center justify-center">
+                <img class="md:w-14 w-10 " src="{% static 'svg/vercel.svg' %}" alt="">
+            </li>
+            <li class="flex flex-col items-center justify-center">
+                <img class="md:h-12 h-8" src="{% static 'svg/render.png' %}" alt="">
+            </li>
+            <li class="flex flex-col items-center justify-center">
+                <img class="md:w-12 w-10 " src="{% static 'svg/heroku.svg' %}" alt="">
+            </li>
+            <li class="flex flex-col items-center justify-center">
+                <img class="md:w-28 w-20 " src="{% static 'svg/cpanel.svg' %}" alt="">
+            </li>
+            
+        </ul>
+    </div>
+</div>

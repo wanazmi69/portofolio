@@ -1,0 +1,78 @@
+<div
+  data-aos="zoom-in"
+  data-aos-duration="2000"
+  data-aos-offset="250"
+
+
+  class=" container-fluid justify-center items-center py-5 px-10 lg:py-10 lg::px-20 w-full md:max-w-2xl font-[Poppins] text-sm "
+  id="skills">
+  <div class="row">
+    <div class="">
+      <div class="skills-text max-w-md md:max-w-2xl">
+        <dl class="skills-list  ">
+          <dt class="skill-name ">
+            <dd id="percent" class="relative border-2 border-white flex items-center px-5 py-3 skill-percent skill-percent-python rounded-full" data-percent="70%">
+              <span>Python</span>
+            </dd>
+          </dt>
+
+          <dt class="skill-name">
+            <dd id="percent" class="flex items-center px-5 skill-percent skill-percent-django rounded-full" data-percent="65%">
+              <span>Django</span>
+            </dd>
+          </dt>
+          <dt class="skill-name">
+
+            <dd class="flex items-center px-5 skill-percent skill-percent-html rounded-full" data-percent="85%">
+              <span>HTML</span>
+            </dd>
+          </dt>
+          <dt class="skill-name">
+            <dd class="flex items-center px-5 skill-percent skill-percent-css rounded-full" data-percent="30%">
+              <span>CSS</span>
+            </dd>
+          </dt>
+          <dt class="skill-name">
+
+            <dd class="flex items-center px-5 skill-percent skill-percent-scss rounded-full" data-percent="90%">
+              <span>Tailwind CSS</span>
+            </dd>
+          </dt>
+          <dt class="skill-name">
+
+            <dd class="flex items-center px-5 skill-percent skill-percent-javascript rounded-full" data-percent="20%">
+              <span>Javascript</span>
+            </dd>
+          </dt>
+          <dt class="skill-name">
+
+            <dd class="flex items-center px-5 skill-percent skill-percent-git rounded-full" data-percent="50%">
+              <span>GIT</span>
+            </dd>
+          </dt>
+
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var persentase_python = document.querySelector('.python');
+  var django = document.querySelector('.django');
+ 
+
+  
+  
+  $('.skill-percent').each(function () {
+    $(this).animate({
+      width: $(this).attr('data-percent')
+    }, "fast");
+    // anime({
+    //   targets: [persentase_python, django],
+    //   innerHTML: [0, $(this).attr('data-percent')],
+    //   easing: 'linear',
+    //   round: 10 // Will round the animated value to 1 decimal
+    // });
+  });
+</script>
