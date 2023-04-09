@@ -93,23 +93,9 @@ WSGI_APPLICATION = 'myweb.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+DATABASES = {}
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'getu9153_curriculum_vitae',
-#         'USER': 'getu9153_wanazmi',
-#         'PASSWORD': 'iHu9ZSvtjRFzT_S',
-#         'HOST': '217.21.72.156',
-#         'PORT': '3306',
-#     }
-# }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
