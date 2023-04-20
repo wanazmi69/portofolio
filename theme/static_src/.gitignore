@@ -3,6 +3,7 @@ theme/static_src/node_modules
 /.env
 .env/
 env
+.env_config
 /node_modules
 node_modules
 # Created by https://www.toptal.com/developers/gitignore/api/django

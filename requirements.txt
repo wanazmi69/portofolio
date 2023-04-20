@@ -8,3 +8,4 @@ xhtml2pdf==0.2.9
 django-resized==1.0.2
 scrapetube==2.3.1
 key-generator==1.0.3
+environs==9.5.0

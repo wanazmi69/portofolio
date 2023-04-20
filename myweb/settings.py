@@ -12,16 +12,14 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
-
+from environs import Env
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
+env = Env()
+env.read_env('.env_config')
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-romo+@^gb(no8*w2y5*=up!je_bi9re*qzj=-xo4k(^jcp@v--'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -29,10 +27,9 @@ if DEBUG:
     ALLOWED_HOSTS = ['*']
 else:
     ALLOWED_HOSTS = ['.vercel.app', 'wanazmi.scale.web.id', '.now.sh']
-# ALLOWED_HOSTS = [
-#     'localhost',
-#     '127.0.0.1'
-# ]
+
+SECRET_KEY = env('SECRET_KEY') if DEBUG else os.environ.get('SECRET_KEY')
+
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
@@ -90,15 +87,8 @@ WSGI_APPLICATION = 'myweb.wsgi.application'
 
 
 
-# Database
-# https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
 DATABASES = {}
 
-
-
-# Password validation
-# https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -116,9 +106,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/4.0/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -127,8 +114,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.0/howto/static-files/
+
 
 STATIC_URL = '/static/'
 if DEBUG:
@@ -136,8 +122,6 @@ if DEBUG:
 else:
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
+
 NPM_BIN_PATH = '/usr/local/bin/npm'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-# NPM_BIN_PATH =  r"C:\Program Files\nodejs\npm.cmd"
